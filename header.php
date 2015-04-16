@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 
-	<title><?php wp_title( '|', true, 'right' ); ?></title>
+	<title><?php echo get_bloginfo('name'); ?> | <?php echo get_bloginfo('description'); ?></title>
 
 	<!-- wordpress head functions -->
 	<?php wp_head(); ?>
