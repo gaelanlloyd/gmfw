@@ -4,7 +4,11 @@
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 
-	<title>Gaelan Lloyd | Seattle web architect</title>
+	<title><?php wp_title( '|', true, 'right' ); ?></title>
+
+	<!-- wordpress head functions -->
+	<?php wp_head(); ?>
+	<!-- end of wordpress head -->
 
 	<style type="text/css">
 		/* To encourage you to write as little CSS as possible, there's no separate CSS file */
@@ -21,21 +25,11 @@
 
 </head>
 
-<body>
+<body <?php body_class(); ?>>
 	<header>
 
 		<nav>
-			<?php
-
-			/*
-			<ul>
-				<li><a href="/">Home</a></li>
-			</ul>
-			*/
-
-			wp_nav_menu( array('menu' => 'Main' ));
-
-			?>
+			<?php wp_nav_menu( array('menu' => 'Main' )); ?>
 		</nav>
 
 		<hr>
