@@ -13,7 +13,7 @@
 	<style type="text/css">
 		/* To encourage you to write as little CSS as possible, there's no separate CSS file */
 		body { margin: 1em auto; max-width: 650px; line-height: 1.6em; font-size: 18px; color: #444; padding: 0 10px; }
-		hr { clear: both; border-color: #E0E0E0; color: #E0E0E0; }
+		hr { clear: both; border-color: #E0E0E0; color: #E0E0E0; margin: 2em 0; }
 		nav ul { padding-left: 0; }
 		nav li { list-style-type: none; float: left; margin-right: 1em; }
 		img.full { width: 100%; }
@@ -24,8 +24,15 @@
 		h2 { font-size: 22px; }
 		h3 { font-size: 18px; }
 		li { margin-bottom: 0.5em; }
-		pre { border: 2px dashed #CCCCCC; padding: 1em; }
+		pre { border: 2px dashed #CCCCCC; padding: 1em; font-size: 14px; }
 		.mt0 { margin-top: 1em; }
+		table { border-collapse: collapse; }
+		th, td { padding: 0.5em 1em; padding: 0.5em 1em; border: 1px solid #E0E0E0; vertical-align: top; text-align: left; }
+		dt { font-weight: bold; }
+		dt, dd { margin-bottom: 1em; }
+		.floatLeft { float: left; margin-right: 1em; margin-bottom: 1em; }
+		.floatRight { float: right; margin-left: 1em; margin-bottom: 1em; }
+		.clearFloat { clear: both; }
 	</style>
 
 </head>
