@@ -100,6 +100,50 @@ function gmfw_view_blog( $atts, $content = null ) {
 }
 
 add_shortcode('gmfw_view_blog','gmfw_view_blog');
-// -----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// Set archives to show X posts per page
+// ----------------------------------------------------------------------------
+/*
+function post_count_archive( $query ) {
+    if( !is_admin() && $query->is_main_query() && is_archive() ) {
+        $query->set( 'posts_per_page', '4' );
+    }
+}
+add_action( 'pre_get_posts', 'post_count_archives' );
+*/
+
+
+// ----------------------------------------------------------------------------
+// Category archive pagination fix
+// Fixes 404 when custom permalink string is: /%category%/%postname%/
+// Adapted from: https://wordpress.org/plugins/category-pagination-fix/faq/
+// ----------------------------------------------------------------------------
+
+function remove_page_from_query_string($query_string)
+{
+    if (@$query_string['name'] == 'page' && isset($query_string['page'])) {
+        unset($query_string['name']);
+        list($delim, $page_index) = explode('/', $query_string['page']);
+        $query_string['paged'] = $page_index;
+    }
+    return $query_string;
+}
+add_filter('request', 'remove_page_from_query_string');
+
+// following are code adapted from Custom Post Type Category Pagination Fix by jdantzer
+function fix_category_pagination($qs){
+	if(isset($qs['category_name']) && isset($qs['paged'])){
+		$qs['post_type'] = get_post_types($args = array(
+			'public'   => true,
+			'_builtin' => false
+		));
+		array_push($qs['post_type'],'post');
+	}
+	return $qs;
+}
+add_filter('request', 'fix_category_pagination');
+
+// ----------------------------------------------------------------------------
 
 ?>

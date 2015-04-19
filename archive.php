@@ -49,12 +49,13 @@
 
 		<?php echo paginate_links( ); ?>
 
-		<!--
+		<?php /*
 		<ul class="pager">
 			<li class="previous"><?php next_posts_link('&laquo; Older Entries'); ?></li>
 			<li class="next"><?php previous_posts_link('Newer Entries &raquo;'); ?></li>
 		</ul>
-		-->
+		*/ ?>
+
 	</nav>
 
 	<?php else : ?>
