@@ -24,7 +24,7 @@
 
 			<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 
-			<p>Posted on: <time datetime="<?php echo get_the_date('Y-m-j'); ?>" pubdate><?php echo get_the_date('Y-m-j'); ?></time></p>
+			<p>Posted on: <time datetime="<?php echo get_the_date('Y-m-d'); ?>" pubdate><?php echo get_the_date('Y-m-d'); ?></time></p>
 
 		</header> <!-- end article header -->
 
