@@ -11,6 +11,9 @@
 		</header>
 
 		<section class="post_content clearfix" itemprop="articleBody">
+
+			<p><strong><?php the_date(); ?></strong></p>
+
 			<?php the_content(); ?>
 
 			<?php // wp_link_pages(); ?>
