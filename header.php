@@ -25,7 +25,8 @@
 		h3 { font-size: 18px; }
 		li { margin-bottom: 0.5em; }
 		pre { border: 2px dashed #CCCCCC; padding: 1em; font-size: 14px; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
-		.mt0 { margin-top: 1em; }
+		.mt0 { margin-top: 0; }
+		.mb0 { margin-bottom: 0; }
 		table { border-collapse: collapse; }
 		th, td { padding: 0.5em 1em; padding: 0.5em 1em; border: 1px solid #E0E0E0; vertical-align: top; text-align: left; }
 		dt { font-weight: bold; }
