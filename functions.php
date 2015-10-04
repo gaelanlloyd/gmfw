@@ -15,9 +15,48 @@ function register_gmfw_menu() {
 }
 
 // ----------------------------------------------------------------------------
+// gmfw_twocol - s/c to set up a two-column section
+// ----------------------------------------------------------------------------
+function gmfw_twocol( $atts, $content = null ) {
+	extract(shortcode_atts(array(
+		'col'=> 0,
+		), $atts));
+
+	$return_string = ''; // init so that further lines can use .= notation consistently
+
+	// if col is not specified or anything other than 1 or 2, return an error
+	if ( empty($col) || ( ( $col != 1 ) && ( $col != 2 ) ) ) {
+		$return_string .= '<pre>ERROR - GMFW_TWOCOL: The [col] parameter must be specified and either be [1] or [2].</pre>';
+		return $return_string;
+	}
+
+	switch ( $col ) {
+		case '1';
+			$return_string .= '<table class="twocol"><tbody><tr><td class="left">';
+			$return_string .= do_shortcode($content);
+			$return_string .= '</td>';
+		break;
+
+		case '2';
+			$return_string .= '<td class="right">';
+			$return_string .= do_shortcode($content);
+			$return_string .= '</td></tr></tbody></table>';
+		break;
+
+	}
+
+	return $return_string;
+
+}
+
+add_shortcode('gmfw_twocol','gmfw_twocol');
+
+
+// ----------------------------------------------------------------------------
 // gmfw_view_blog - s/c to list all blog entries in a ul/li
 // ----------------------------------------------------------------------------
 function gmfw_view_blog( $atts, $content = null ) {
+
 	extract(shortcode_atts(array(
 		'limit' => 5,
 		), $atts));
@@ -277,6 +316,32 @@ function fix_category_pagination($qs){
 add_filter('request', 'fix_category_pagination');
 
 // ----------------------------------------------------------------------------
+// Empty P and BR tag remover
+// Tidies up undesirable P and BR tags from the GMFW_COL shortcode content
+// Adapted from: https://thomasgriffin.io/remove-empty-paragraph-tags-shortcodes-wordpress/
+// ----------------------------------------------------------------------------
 
+add_filter( 'the_content', 'tgm_io_shortcode_empty_paragraph_fix' );
+/**
+ * Filters the content to remove any extra paragraph or break tags
+ * caused by shortcodes.
+ *
+ * @since 1.0.0
+ *
+ * @param string $content  String of HTML content.
+ * @return string $content Amended string of HTML content.
+ */
+function tgm_io_shortcode_empty_paragraph_fix( $content ) {
+
+	$array = array(
+		'<p>['    => '[',
+		']</p>'   => ']',
+		']<br />' => ']'
+	);
+	return strtr( $content, $array );
+
+}
+
+// ----------------------------------------------------------------------------
 
 ?>

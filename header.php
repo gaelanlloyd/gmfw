@@ -29,6 +29,10 @@
 		.mb0 { margin-bottom: 0; }
 		table { border-collapse: collapse; }
 		th, td { padding: 0.5em 1em; padding: 0.5em 1em; border: 1px solid #E0E0E0; vertical-align: top; text-align: left; }
+		table.twocol { width: 100%; }
+		table.twocol td { width: 50%; border: 0; padding-top: 0; padding-bottom: 0; }
+		table.twocol td.left { padding-left: 0; }
+		table.twocol td.right { padding-right: 0; }
 		dt { font-weight: bold; }
 		dt, dd { margin-bottom: 1em; }
 		.floatLeft { float: left; margin-right: 1em; margin-bottom: 1em; }
