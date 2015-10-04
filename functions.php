@@ -107,15 +107,18 @@ add_shortcode('gmfw_view_blog','gmfw_view_blog');
 // Requires the [oAuth Twitter Feed for Developers] plugin
 // ----------------------------------------------------------------------------
 
-function gmfw_list_tweets()
-{
+function gmfw_list_tweets( $atts ) {
+
+	extract(shortcode_atts(array(
+		'limit' => 5,
+		), $atts));
+
 	$screenname = 'gaelanlloyd';
-	$number_of_tweets = '5';
 	$options = '';
 
 	$return_string = ''; // init so that further lines can use .= notation consistently
 
-	$tweets = getTweets($screenname, $number_of_tweets, $options);
+	$tweets = getTweets($screenname, $limit, $options);
 
 	// Example code adapted from https://github.com/stormuk/storm-twitter-for-wordpress/wiki/Example-code-to-layout-tweets
 
