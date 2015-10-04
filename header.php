@@ -12,7 +12,7 @@
 
 	<style type="text/css">
 		/* To encourage you to write as little CSS as possible, there's no separate CSS file */
-		body { margin: 1em auto; max-width: 650px; line-height: 1.6em; font-size: 18px; color: #444; padding: 0 10px; }
+		body { margin: 1em auto; max-width: 650px; line-height: 1.6em; font-size: 16px; color: #444; padding: 0 10px; }
 		hr { clear: both; border-color: #E0E0E0; color: #E0E0E0; margin: 2em 0; }
 		nav ul { padding-left: 0; }
 		nav li { list-style-type: none; float: left; margin-right: 1em; }
