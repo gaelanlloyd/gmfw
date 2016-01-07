@@ -27,6 +27,7 @@
 		pre { border: 2px dashed #CCCCCC; padding: 1em; font-size: 14px; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
 		.mt0 { margin-top: 0; }
 		.mb0 { margin-bottom: 0; }
+		.page ul.blank { padding-left: 0; list-style-type: none; }
 		table { border-collapse: collapse; }
 		th, td { padding: 0.5em 1em; padding: 0.5em 1em; border: 1px solid #E0E0E0; vertical-align: top; text-align: left; }
 		table.twocol { width: 100%; }

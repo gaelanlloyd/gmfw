@@ -92,7 +92,7 @@ function gmfw_view_blog( $atts, $content = null ) {
 	if( $my_query->have_posts() ) {
 
 		$return_string .= '<!-- query limit = ' . $limit . ' -->';
-		$return_string .= '<ul>';
+		$return_string .= '<ul class="blank">';
 
 	  while ($my_query->have_posts()) : $my_query->the_post();
 
@@ -163,7 +163,7 @@ function gmfw_list_tweets( $atts ) {
 
 	if(is_array($tweets)) {
 
-		$return_string .= '<ul>';
+		$return_string .= '<ul class="blank">';
 
 		foreach($tweets as $tweet) {
 
