@@ -23,7 +23,7 @@
 		h1 { font-size: 25px; }
 		h2 { font-size: 22px; }
 		h3 { font-size: 18px; }
-		li { margin-bottom: 0.5em; }
+		li { margin-bottom: 1em; }
 		pre { border: 2px dashed #CCCCCC; padding: 1em; font-size: 14px; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
 		.mt0 { margin-top: 0; }
 		.mb0 { margin-bottom: 0; }
