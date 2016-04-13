@@ -12,6 +12,9 @@
 
 	<style type="text/css">
 		/* To encourage you to write as little CSS as possible, there's no separate CSS file */
+
+		@import url(https://fonts.googleapis.com/css?family=Rubik:300,500);
+
 		body { margin: 1em auto; max-width: 650px; line-height: 1.6em; font-size: 16px; color: #444; padding: 0 10px; }
 		hr { clear: both; border-color: #E0E0E0; color: #E0E0E0; margin: 2em 0; }
 		nav ul { padding-left: 0; }
@@ -39,6 +42,18 @@
 		.floatLeft { float: left; margin-right: 1em; margin-bottom: 1em; }
 		.floatRight { float: right; margin-left: 1em; margin-bottom: 1em; }
 		.clearFloat { clear: both; }
+
+		/* Optional Google font section
+		   Remove this next section and the import above if you don't want fancy font support */
+
+		h1, h2, h3, h4, h5, p, li, body { font-family: 'Rubik', sans-serif; font-weight: 300; }
+		h1 { font-size: 32px; font-weight: 300; }
+		h1, h2, h3, h4, h5 { text-transform: uppercase; }
+		b, strong, dt, th { font-weight: 500; }
+		a { text-decoration: none; color: #0066FF; }
+		a:visited { color: #DF9FBF; }
+		a:hover { text-decoration: underline; }
+
 	</style>
 
 </head>
