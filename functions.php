@@ -291,8 +291,7 @@ add_action( 'pre_get_posts', 'post_count_archives' );
 // Adapted from: https://wordpress.org/plugins/category-pagination-fix/faq/
 // ----------------------------------------------------------------------------
 
-function remove_page_from_query_string($query_string)
-{
+function remove_page_from_query_string($query_string) {
     if (@$query_string['name'] == 'page' && isset($query_string['page'])) {
         unset($query_string['name']);
         list($delim, $page_index) = explode('/', $query_string['page']);
@@ -303,7 +302,7 @@ function remove_page_from_query_string($query_string)
 add_filter('request', 'remove_page_from_query_string');
 
 // following are code adapted from Custom Post Type Category Pagination Fix by jdantzer
-function fix_category_pagination($qs){
+function fix_category_pagination($qs) {
 	if(isset($qs['category_name']) && isset($qs['paged'])){
 		$qs['post_type'] = get_post_types($args = array(
 			'public'   => true,

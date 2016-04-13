@@ -27,7 +27,7 @@
 		h2 { font-size: 22px; }
 		h3 { font-size: 18px; }
 		li { margin-bottom: 1em; }
-		pre { border: 2px dashed #CCCCCC; padding: 1em; font-size: 14px; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
+		pre { border: 2px dashed #CCCCCC; padding: 1em; font-family: 'Courier New', monospace; font-size: 14px; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
 		.mt0 { margin-top: 0; }
 		.mb0 { margin-bottom: 0; }
 		.page ul.blank { padding-left: 0; list-style-type: none; }
@@ -39,6 +39,8 @@
 		table.twocol td.right { padding-right: 0; }
 		dt { font-weight: bold; }
 		dt, dd { margin-bottom: 1em; }
+		body.archive article { margin-bottom: 2em; border-bottom: 1px solid #CCCCCC; }
+		body.archive article:last-of-type { border-bottom: 0; }
 		.floatLeft { float: left; margin-right: 1em; margin-bottom: 1em; }
 		.floatRight { float: right; margin-left: 1em; margin-bottom: 1em; }
 		.clearFloat { clear: both; }

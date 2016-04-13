@@ -41,8 +41,6 @@
 
 	</article>
 
-	<hr>
-
 	<?php endwhile; ?>
 
 	<nav class="wp-prev-next">
