@@ -8,7 +8,7 @@
 
 	<!-- wordpress head functions -->
 	<?php wp_head(); ?>
-	<!-- end of wordpress head -->
+	<!-- end of wordpress head functions -->
 
 	<style type="text/css">
 		/* To encourage you to write as little CSS as possible, there's no separate CSS file */
