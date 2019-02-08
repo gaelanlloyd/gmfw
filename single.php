@@ -2,65 +2,80 @@
 
 <!-- GWL: THIS IS SINGLE.PHP -->
 
-	<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
-	<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
+<article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
-		<header>
-			<h1><?php the_title(); ?></h1>
-		</header>
+	<header>
 
-		<section class="post_content clearfix" itemprop="articleBody">
+		<?php
 
-			<p><strong><?php the_date(); ?></strong></p>
+		// If there's a featured image, display it
 
-			<?php the_content(); ?>
+		// - Featured images should be 900 px wide
+		// - Height can vary, 250px looks nice
 
-			<?php // wp_link_pages(); ?>
+		if ( has_post_thumbnail() ) { ?>
+			<img src="<?php the_post_thumbnail_url( ); ?>" style="margin-top: 1em; width: 900px;">
+		<?php } ?>
 
-		</section> <!-- end article section -->
+		<h1><?php echo gmfw_return_page_title(); ?></h1>
 
-		<footer>
+	</header>
 
-			<?php // the_tags('<p class="tags"><span class="tags-title">' . __("Tags","wpbootstrap") . ':</span> ', ' ', '</p>'); ?>
+	<section class="post_content clearfix" itemprop="articleBody">
 
-			<?php
-			/*
-			// only show edit button if user has permission to edit posts
-			if( $user_level > 0 ) {
-			?>
-			<a href="<?php echo get_edit_post_link(); ?>" class="btn btn-success edit-post"><i class="icon-pencil icon-white"></i> <?php _e("Edit post","wpbootstrap"); ?></a>
-			<?php }
-			*/ ?>
+		<p class="caps"><strong><?php the_date(); ?></strong></p>
 
-		</footer>
+		<?php the_content(); ?>
 
-	</article>
+		<?php // wp_link_pages(); ?>
 
-	<?php // comments_template('',true); ?>
+	</section> <!-- end article section -->
 
-	<?php endwhile; ?>
+	<footer>
 
-	<nav class="wp-prev-next">
-		<ul class="pager">
-			<li class="previous"><?php next_posts_link('&laquo; Older Entries'); ?></li>
-			<li class="next"><?php previous_posts_link('Newer Entries &raquo;'); ?></li>
-		</ul>
-	</nav>
+		<?php // the_tags('<p class="tags"><span class="tags-title">' . __("Tags","wpbootstrap") . ':</span> ', ' ', '</p>'); ?>
 
-	<?php else : ?>
+		<?php
+		/*
+		// only show edit button if user has permission to edit posts
+		if( $user_level > 0 ) {
+		?>
+		<a href="<?php echo get_edit_post_link(); ?>" class="btn btn-success edit-post"><i class="icon-pencil icon-white"></i> <?php _e("Edit post","wpbootstrap"); ?></a>
+		<?php }
+		*/ ?>
 
-	<article id="post-not-found">
-	    <header>
-	    	<h1>Not found</h1>
-	    </header>
-	    <section class="post_content">
-	    	<p>Sorry, but that page couldn't be found.</p>
-	    </section>
-	    <footer>
-	    </footer>
-	</article>
+	</footer>
 
-	<?php endif; ?>
+</article>
 
-<?php get_footer(); ?>
+<?php // comments_template('',true); ?>
+
+<?php endwhile; ?>
+
+<?php /*
+<nav class="wp-prev-next">
+	<ul class="pager">
+		<li class="previous"><?php next_posts_link('&laquo; Older Entries'); ?></li>
+		<li class="next"><?php previous_posts_link('Newer Entries &raquo;'); ?></li>
+	</ul>
+</nav>
+*/ ?>
+
+<?php else : ?>
+
+<article id="post-not-found">
+    <header>
+    	<h1>Not found</h1>
+    </header>
+    <section class="post_content">
+    	<p>Sorry, but that page couldn't be found.</p>
+    </section>
+    <footer>
+    </footer>
+</article>
+
+<?php endif; ?>
+
+<?php get_footer();

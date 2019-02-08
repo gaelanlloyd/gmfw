@@ -1,4 +1,4 @@
-# gmfw
+# GMFW
 
 A simple WordPress theme based off MFW and BMFW.
 

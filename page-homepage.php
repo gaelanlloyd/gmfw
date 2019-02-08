@@ -1,14 +1,18 @@
+<?php
+/*
+Template Name: Homepage
+*/
+?>
+
 <?php get_header(); ?>
 
-<!-- GWL : THIS IS INDEX.PHP -->
+<!-- GWL : THIS IS PAGE-HOMEPAGE.PHP -->
 
 <!-- START PAGE CONTENT -->
 
 <?php // --- START THE LOOP ---
 
 	if ( have_posts() ) : while ( have_posts() ) : the_post();
-
-		?><h1><?php echo the_title(); ?></h1><?php
 
 		the_content();
 

@@ -320,7 +320,8 @@ add_filter('request', 'fix_category_pagination');
 // Adapted from: https://thomasgriffin.io/remove-empty-paragraph-tags-shortcodes-wordpress/
 // ----------------------------------------------------------------------------
 
-add_filter( 'the_content', 'tgm_io_shortcode_empty_paragraph_fix' );
+// add_filter( 'the_content', 'tgm_io_shortcode_empty_paragraph_fix' );
+
 /**
  * Filters the content to remove any extra paragraph or break tags
  * caused by shortcodes.
@@ -341,6 +342,54 @@ function tgm_io_shortcode_empty_paragraph_fix( $content ) {
 
 }
 
-// ----------------------------------------------------------------------------
+// --- Disable unused WP features ----------------------------------------------
 
-?>
+// --- Disable adjacent post prefetch
+
+remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head' );
+
+// --- Disable wp-embed.min.js
+
+function wsh_deregister_wp_scripts() {
+  wp_deregister_script( 'wp-embed' );
+}
+
+add_action( 'wp_footer', 'wsh_deregister_wp_scripts' );
+
+// --- Disable wp-emoji-release.min.js
+
+remove_action('wp_head', 'print_emoji_detection_script', 7);
+remove_action('wp_print_styles', 'print_emoji_styles');
+
+// --- Remove <link rel='shortlink'>
+// which causes tons of useless pages to be followed during a wget operation
+
+remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
+
+// --- Remove <meta name="generator">
+
+remove_action('wp_head', 'wp_generator');
+
+// --- Return H1 / Page SEO title ----------------------------------------------
+
+function gmfw_return_page_title() {
+
+	if ( is_category() ) {
+		$title = single_cat_title( NULL, FALSE );
+	} elseif ( is_tag() ) {
+		$title = "Posts tagged: " . single_tag_title();
+	} elseif ( is_author() ) {
+		$title = "Posts by: " . get_the_author_meta('display_name');
+	} elseif ( is_day() ) {
+		$title = "Daily archives: " . get_the_time('l, F j, Y');
+	} elseif ( is_month() ) {
+	    $title = "Monthly archives: " . get_the_time('F Y');
+	} elseif ( is_year() ) {
+	    $title = "Yearly archives: " . get_the_time('Y');
+	} else {
+		$title = get_the_title();
+	}
+
+	return $title;
+
+}
