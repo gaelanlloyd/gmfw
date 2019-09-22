@@ -2,22 +2,15 @@
 
 <!-- GWL: THIS IS SINGLE.PHP -->
 
+<div class="row"><div class="col-12">
+
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
 
 	<header>
 
-		<?php
-
-		// If there's a featured image, display it
-
-		// - Featured images should be 900 px wide
-		// - Height can vary, 250px looks nice
-
-		if ( has_post_thumbnail() ) { ?>
-			<img src="<?php the_post_thumbnail_url( ); ?>" style="margin-top: 1em; width: 900px;">
-		<?php } ?>
+		<?php if ( has_post_thumbnail() ) { gmfw_write_featured_image(); } ?>
 
 		<h1><?php echo gmfw_return_page_title(); ?></h1>
 
@@ -54,28 +47,44 @@
 
 <?php endwhile; ?>
 
-<?php /*
-<nav class="wp-prev-next">
-	<ul class="pager">
-		<li class="previous"><?php next_posts_link('&laquo; Older Entries'); ?></li>
-		<li class="next"><?php previous_posts_link('Newer Entries &raquo;'); ?></li>
-	</ul>
-</nav>
-*/ ?>
+<hr />
+
+</div><!--/col-->
+</div><!--/row-->
+
+<div class="row">
+
+<?php
+
+	$linkNext = get_next_post_link( "%link");
+	$linkPrev = get_previous_post_link( "%link");
+
+	if ( $linkNext ) { ?>
+		<div class="col-6">
+			<div class="well">
+				<p class="caps"><strong>Newer post</strong></p>
+				<p><?php echo $linkNext; ?></p>
+			</div>
+		</div>
+	<?php }
+
+	if ( $linkPrev ) { ?>
+		<div class="col-6">
+				<div class="well">
+				<p class="caps"><strong>Older post</strong></p>
+					<p><?php echo $linkPrev; ?></p>
+			</div>
+		</div>
+	<?php } ?>
 
 <?php else : ?>
 
 <article id="post-not-found">
-    <header>
-    	<h1>Not found</h1>
-    </header>
-    <section class="post_content">
-    	<p>Sorry, but that page couldn't be found.</p>
-    </section>
-    <footer>
-    </footer>
+	<?php gmfw_write_404_message(); ?>
 </article>
 
 <?php endif; ?>
+
+</div></div>
 
 <?php get_footer();

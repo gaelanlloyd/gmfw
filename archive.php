@@ -2,6 +2,8 @@
 
 <!-- GWL: THIS IS ARCHIVE.PHP -->
 
+<div class="row"><div class="col-12">
+
 <h1><?php echo gmfw_return_page_title(); ?></h1>
 
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
@@ -24,8 +26,10 @@
 
 	</section>
 
+	<?php /*
 	<footer>
 	</footer>
+	*/ ?>
 
 </article>
 
@@ -47,16 +51,19 @@
 <?php else : ?>
 
 <article id="post-not-found">
-    <header>
-    	<h1>No posts yet</h1>
-    </header>
     <section class="post_content">
     	<p>Sorry, there don't seem to be any posts here.</p>
     </section>
+
+    <?php /*
     <footer>
     </footer>
+    */ ?>
+
 </article>
 
 <?php endif; ?>
+
+</div></div>
 
 <?php get_footer();

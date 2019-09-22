@@ -1,5 +1,7 @@
 <?php
 
+include('shortcodes.php');
+
 // ----------------------------------------------------------------------------
 // Allow pages and posts to have featured images
 // ----------------------------------------------------------------------------
@@ -14,131 +16,6 @@ function register_gmfw_menu() {
 	register_nav_menu( 'primary', __( 'Primary Menu', 'gmfw-main-menu' ) );
 }
 
-// ----------------------------------------------------------------------------
-// gmfw_twocol - s/c to set up a two-column section
-// ----------------------------------------------------------------------------
-function gmfw_twocol( $atts, $content = null ) {
-	extract(shortcode_atts(array(
-		'col'=> 0,
-		), $atts));
-
-	$return_string = ''; // init so that further lines can use .= notation consistently
-
-	// if col is not specified or anything other than 1 or 2, return an error
-	if ( empty($col) || ( ( $col != 1 ) && ( $col != 2 ) ) ) {
-		$return_string .= '<pre>ERROR - GMFW_TWOCOL: The [col] parameter must be specified and either be [1] or [2].</pre>';
-		return $return_string;
-	}
-
-	switch ( $col ) {
-		case '1';
-			$return_string .= '<table class="twocol"><tbody><tr><td class="left">';
-			$return_string .= do_shortcode($content);
-			$return_string .= '</td>';
-		break;
-
-		case '2';
-			$return_string .= '<td class="right">';
-			$return_string .= do_shortcode($content);
-			$return_string .= '</td></tr></tbody></table>';
-		break;
-
-	}
-
-	return $return_string;
-
-}
-
-add_shortcode('gmfw_twocol','gmfw_twocol');
-
-
-// ----------------------------------------------------------------------------
-// gmfw_view_blog - s/c to list all blog entries in a ul/li
-// ----------------------------------------------------------------------------
-function gmfw_view_blog( $atts, $content = null ) {
-
-	extract(shortcode_atts(array(
-		'limit' => 5,
-		), $atts));
-
-	$return_string = ''; // init so that further lines can use .= notation consistently
-
-	// if no limit is specified, default to 5 (5+1 = 6)
-	if ( empty($limit) ) {
-		// limit is 1-n
-		$limit = 6;
-	}
-
-	$args = array(
-	  'post_type' => 'post',
-	  'post_status' => 'publish',
-	  'orderby' => 'date',
-	  'order' => 'desc',
-	  'posts_per_page' => $limit, // -1 for all, 1-n for n posts
-	  'tax_query' => array(
-	  		array(
-	  			'taxonomy' => 'category',
-	  			'field' => 'slug',
-	  			'terms' => 'blog'
-	  		)
-	  )
-	);
-
-	$my_query = null;
-	$my_query = new WP_Query($args);
-
-	$i = 0;
-
-	if( $my_query->have_posts() ) {
-
-		$return_string .= '<!-- query limit = ' . $limit . ' -->';
-		$return_string .= '<ul class="blank">';
-
-	  while ($my_query->have_posts()) : $my_query->the_post();
-
-			/*
-			// get a custom field from the current post
-			$postMeta = get_post_custom_values("wpcf-upload-ad");
-			$promoGraphic = $postMeta[0];
-			*/
-			$postDate = get_the_date("Y-m-d");
-
-			$postPermalink = get_the_permalink();
-			$postTitle = get_the_title();
-			$postID = get_the_ID();
-
-			/* DEBUG */
-			/*
-			$return_string .= "<pre>";
-			$return_string .= "Permalink = [" . $postPermalink . "]<br>";
-			$return_string .= "Title = [" . $postTitle . "]<br>";
-			$return_string .= "ID = [" . $postID ."]<br>";
-			$return_string .= "</pre>";
-			*/
-
-			$return_string .= '<li>';
-			$return_string .= '<a href="' . $postPermalink . '">' . $postTitle . '</a> (' . $postDate . ')';
-			$return_string .= '</li>';
-
-			$i++;
-
-	  endwhile;
-
-		$return_string .= '</ul>';
-
-	} else {
-
-		$return_string .= '<p>No posts found.</p>';
-
-	}
-
-	wp_reset_postdata();  // Restore global post data stomped by the_post().
-
-	return $return_string;
-
-}
-
-add_shortcode('gmfw_view_blog','gmfw_view_blog');
 
 
 // ----------------------------------------------------------------------------
@@ -273,19 +150,6 @@ add_shortcode('gmfw_list_tweets','gmfw_list_tweets');
 
 
 // ----------------------------------------------------------------------------
-// Set archives to show X posts per page
-// ----------------------------------------------------------------------------
-/*
-function post_count_archive( $query ) {
-    if( !is_admin() && $query->is_main_query() && is_archive() ) {
-        $query->set( 'posts_per_page', '4' );
-    }
-}
-add_action( 'pre_get_posts', 'post_count_archives' );
-*/
-
-
-// ----------------------------------------------------------------------------
 // Category archive pagination fix
 // Fixes 404 when custom permalink string is: /%category%/%postname%/
 // Adapted from: https://wordpress.org/plugins/category-pagination-fix/faq/
@@ -313,34 +177,6 @@ function fix_category_pagination($qs) {
 	return $qs;
 }
 add_filter('request', 'fix_category_pagination');
-
-// ----------------------------------------------------------------------------
-// Empty P and BR tag remover
-// Tidies up undesirable P and BR tags from the GMFW_COL shortcode content
-// Adapted from: https://thomasgriffin.io/remove-empty-paragraph-tags-shortcodes-wordpress/
-// ----------------------------------------------------------------------------
-
-// add_filter( 'the_content', 'tgm_io_shortcode_empty_paragraph_fix' );
-
-/**
- * Filters the content to remove any extra paragraph or break tags
- * caused by shortcodes.
- *
- * @since 1.0.0
- *
- * @param string $content  String of HTML content.
- * @return string $content Amended string of HTML content.
- */
-function tgm_io_shortcode_empty_paragraph_fix( $content ) {
-
-	$array = array(
-		'<p>['    => '[',
-		']</p>'   => ']',
-		']<br />' => ']'
-	);
-	return strtr( $content, $array );
-
-}
 
 // --- Disable unused WP features ----------------------------------------------
 
@@ -370,6 +206,23 @@ remove_action( 'wp_head', 'wp_shortlink_wp_head', 10, 0 );
 
 remove_action('wp_head', 'wp_generator');
 
+// --- Remove Gutenberg block styles
+
+function gmfw_disable_gutenberg_block() {
+    wp_dequeue_style( 'wp-block-library' );
+}
+
+add_action( 'wp_print_styles', 'gmfw_disable_gutenberg_block', 100 );
+
+// --- Include GMFW style
+
+function gmfw_enqueue_style() {
+    wp_enqueue_style( 'gmfw-style', get_stylesheet_uri() );
+}
+
+add_action( 'wp_enqueue_scripts', 'gmfw_enqueue_style' );
+
+
 // --- Return H1 / Page SEO title ----------------------------------------------
 
 function gmfw_return_page_title() {
@@ -393,3 +246,26 @@ function gmfw_return_page_title() {
 	return $title;
 
 }
+
+// --- Return featured image ---------------------------------------------------
+
+function gmfw_write_featured_image() {
+
+	// - Featured images should be 900 px wide
+	// - Height can vary, 250px looks nice
+
+	?><img src="<?php the_post_thumbnail_url(); ?>" class="width-full add-mb-2em"><?php
+
+}
+
+
+// --- Write 404 message -------------------------------------------------------
+
+function gmfw_write_404_message() {
+
+	?>
+	<h1>404</h1>
+	<p>Sorry, this page cannot be found.</p>
+	<?php
+}
+

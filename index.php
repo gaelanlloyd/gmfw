@@ -4,9 +4,13 @@
 
 <!-- START PAGE CONTENT -->
 
+<div class="row"><div class="col-12">
+
 <?php // --- START THE LOOP ---
 
 	if ( have_posts() ) : while ( have_posts() ) : the_post();
+
+		if ( has_post_thumbnail() ) { gmfw_write_featured_image(); }
 
 		?><h1><?php echo the_title(); ?></h1><?php
 
@@ -19,6 +23,8 @@
 	<?php endif;
 
 // --- END THE LOOP --- ?>
+
+</div></div>
 
 <!-- END PAGE CONTENT -->
 

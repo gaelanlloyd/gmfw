@@ -10,6 +10,370 @@ License: GNU General Public License v3.0
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 */
 
+/* --- GMFW Styles ---------------------------------------------------------- */
+
+/* @import url(https://fonts.googleapis.com/css?family=Rubik:300,500); */
+@import url(https://fonts.googleapis.com/css?family=Roboto:300,500);
+
+body { margin: 0; }
+hr { border: 0; color: #808080; background-color: #808080; height: 1px; margin-top: 3em; }
+
+.row-header { border-bottom: 1px solid #808080; padding: 1em 0; margin-bottom: 1.5em; }
+
+.footer {
+  background-color: #BEBEA5;
+	/* background-color: #BEBE94; */
+  margin-top: 7em; padding-top: 3em;
+}
+
+/* link colors from http://clrs.cc/ */
+
+a { color: #0074D9; }
+a:visited { color: #B10DC9; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3, h4, h5 { text-transform: uppercase; font-weight: normal; margin-top: 2em; }
+
+#navmenu ul { padding: 0; margin: 0; float: right; }
+#navmenu li { list-style-type: none; float: left; margin: 0 1em 0 0; }
+#navmenu li:last-of-type { margin-right: 0; }
+#navmenu .current-menu-item a { font-weight: 500; }
+#navmenu a { text-transform: uppercase; text-decoration: none; color: #444444; }
+
+.row-header { margin-bottom: 1px solid #808080; }
+
+h1, h2, h3, h4, p, li, dt, dd, th, td { font-family: 'Roboto', sans-serif; font-weight: 300; color: #444444; line-height: 1.6em; font-size: 16px; }
+
+h1, h2, h3 { line-height: 1.2em; }
+
+h1 { font-size: 36px; margin-bottom: 2em; }
+h2 { font-size: 25px; }
+h3 { font-size: 22px; }
+
+ul { list-style-type: square; }
+
+li { margin-bottom: 1em; }
+
+pre { border: 2px dashed #CCCCCC; padding: 2em; font-family: monospace; font-size: 14px; white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word; }
+
+dt { font-weight: 500; }
+dt, dd { margin-bottom: 1em; }
+
+.table-horizontal, .table-vertical { border-collapse: collapse; }
+
+.table-horizontal th,
+.table-horizontal td,
+.table-vertical th,
+.table-vertical td { padding: 1em 3em; }
+
+.table-horizontal th, .table-vertical th { font-weight: 500; background-color: #F0F0F0; }
+
+.table-horizontal th { border-bottom: 2px solid #444444; border-right: 1px solid #C0C0C0; }
+.table-horizontal td { border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; }
+.table-horizontal th:last-child,
+.table-horizontal td:last-child { border-right: none; }
+
+.table-vertical th { border-right: 2px solid #444444; border-bottom: 1px solid #C0C0C0; }
+.table-vertical td { border-bottom: 1px solid #C0C0C0; border-right: 1px solid #C0C0C0; }
+
+.table-vertical tr:last-child th,
+.table-vertical tr:last-child td { border-bottom: none; }
+
+article { margin-bottom: 2em; padding-bottom: 2em; border-bottom: 1px solid #CCCCCC; }
+.post_content p { text-align: justify; }
+article:last-of-type { border-bottom: 0; padding-bottom: 0; }
+
+.well, .btn { background-color: #EAEAE1; }
+.well { padding: 1em 2em; }
+.btn { padding: 0.5em 1em; border-radius: 12px; }
 
 
-/* Styles are hardcoded in header.php */
+/* --- Helpful modifier classes --- */
+
+.caps { text-transform: uppercase !important; }
+.clear { clear: both !important; }
+.mt0 { margin-top: 0 !important; }
+.mt-halfem { margin-top: 0.5em !important; }
+.mb0 { margin-bottom: 0 !important; }
+.width-full { width: 100% !important; }
+.underline-no { text-decoration: none !important; }
+.color-body { color: #444444 !important; }
+
+.add-mt-1em { margin-top: 1em !important; }
+.add-mt-2em { margin-top: 2em !important; }
+
+.add-mb-1em { margin-bottom: 1em !important; }
+.add-mb-2em { margin-bottom: 2em !important; }
+
+.add-mr-1em { margin-right: 1em !important; }
+.add-mr-2em { margin-right: 2em !important; }
+
+.add-ml-1em { margin-left: 1em !important; }
+.add-ml-2em { margin-left: 2em !important; }
+
+
+/* "as" for "add spacing" to give an element the same margins as other large blocks */
+.as, pre, .table-horizontal, .table-vertical, .well { margin: 2em 0; }
+
+/* --- SIMPLE GRID ---------------------------------------------------------- */
+
+/* - Font handling sections were removed */
+
+/**
+*** SIMPLE GRID
+*** (C) ZACH COLE 2016
+**/
+
+/*
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+*/
+
+/* UNIVERSAL */
+
+/*
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  top: 0;
+  font-size: 100%;
+}
+*/
+
+/* ROOT FONT STYLES */
+
+/*
+* {
+  font-family: 'Lato', Helvetica, sans-serif;
+  color: #333447;
+  line-height: 1.5;
+}
+*/
+
+/* TYPOGRAPHY */
+
+/*
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.375rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+h5 {
+  font-size: 1rem;
+}
+
+h6 {
+  font-size: 0.875rem;
+}
+
+p {
+  font-size: 1.125rem;
+  font-weight: 200;
+  line-height: 1.8;
+}
+
+.font-light {
+  font-weight: 300;
+}
+
+.font-regular {
+  font-weight: 400;
+}
+
+.font-heavy {
+  font-weight: 700;
+}
+*/
+
+/* POSITIONING */
+
+.left {
+  text-align: left;
+}
+
+.right {
+  text-align: right;
+}
+
+.center {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.justify {
+  text-align: justify;
+}
+
+/* ==== GRID SYSTEM ==== */
+
+.container {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  position: relative;
+  width: 100%;
+}
+
+.row [class^="col-"] {
+  float: left;
+  margin: 0.5rem 2%;
+  min-height: 0.125rem;
+}
+
+.col-1,
+.col-2,
+.col-3,
+.col-4,
+.col-5,
+.col-6,
+.col-7,
+.col-8,
+.col-9,
+.col-10,
+.col-11,
+.col-12 {
+  width: 96%;
+}
+
+.col-1-sm {
+  width: 4.33%;
+}
+
+.col-2-sm {
+  width: 12.66%;
+}
+
+.col-3-sm {
+  width: 21%;
+}
+
+.col-4-sm {
+  width: 29.33%;
+}
+
+.col-5-sm {
+  width: 37.66%;
+}
+
+.col-6-sm {
+  width: 46%;
+}
+
+.col-7-sm {
+  width: 54.33%;
+}
+
+.col-8-sm {
+  width: 62.66%;
+}
+
+.col-9-sm {
+  width: 71%;
+}
+
+.col-10-sm {
+  width: 79.33%;
+}
+
+.col-11-sm {
+  width: 87.66%;
+}
+
+.col-12-sm {
+  width: 96%;
+}
+
+.row::after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.hidden-sm {
+  display: none;
+}
+
+@media only screen and (min-width: 33.75em) {  /* 540px */
+  .container {
+    width: 80%;
+  }
+}
+
+@media only screen and (min-width: 45em) {  /* 720px */
+  .col-1 {
+    width: 4.33%;
+  }
+
+  .col-2 {
+    width: 12.66%;
+  }
+
+  .col-3 {
+    width: 21%;
+  }
+
+  .col-4 {
+    width: 29.33%;
+  }
+
+  .col-5 {
+    width: 37.66%;
+  }
+
+  .col-6 {
+    width: 46%;
+  }
+
+  .col-7 {
+    width: 54.33%;
+  }
+
+  .col-8 {
+    width: 62.66%;
+  }
+
+  .col-9 {
+    width: 71%;
+  }
+
+  .col-10 {
+    width: 79.33%;
+  }
+
+  .col-11 {
+    width: 87.66%;
+  }
+
+  .col-12 {
+    width: 96%;
+  }
+
+  .hidden-sm {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 60em) { /* 960px */
+  .container {
+    width: 75%;
+    max-width: 60rem;
+  }
+}
